@@ -16,7 +16,7 @@ import com.eposp.android.ui.BaseActivity;
  */
 public class NetBroadcast extends BroadcastReceiver {
 
-    public NetEvent evevt = BaseActivity.netChangeEvent;//这样写法有个弊端，无法兼容fragment
+    public static NetEvent event = null;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -25,7 +25,8 @@ public class NetBroadcast extends BroadcastReceiver {
         if (intent.getAction().equals(ConnectivityManager.CONNECTIVITY_ACTION)) {
             int netWorkState = NetUtil.getNetWorkState(context);
             // 接口回调传过去状态的类型
-            evevt.onNetChange(netWorkState);
+            if(event!=null)
+                event.onNetChange(netWorkState);
         }
     }
      //还可以

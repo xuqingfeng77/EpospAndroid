@@ -245,23 +245,24 @@ public abstract class BaseActivity extends AppCompatActivity implements DialogCo
     }
 
     public void showToast(final String text) {
-//        runOnUiThread(new Runnable() {
-//            @Override
-//            public void run() {
-//                if (mToast == null) {
-//                    mToast = Toast.makeText(mContext, text, Toast.LENGTH_LONG);
-//                } else {
-//                    mToast.setText(text);
-//                    mToast.setDuration(Toast.LENGTH_SHORT);
-//                }
-//                mToast.show();
-//            }
-//        });
-        CommonToast commonToast=new CommonToast(this);
-        commonToast.setMessage(text);
-        commonToast.setDuration(CommonToast.DURATION_SHORT);
-        commonToast.setLayoutGravity(Gravity.CENTER);
-        commonToast.show();
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (mToast == null) {
+                    mToast = Toast.makeText(mContext, text, Toast.LENGTH_LONG);
+                } else {
+                    mToast.setText(text);
+                    mToast.setDuration(Toast.LENGTH_SHORT);
+                }
+                mToast.show();
+            }
+        });
+        //下面是自定义toast，需要优化，容易创建很多实例对象
+//        CommonToast commonToast=new CommonToast(this);
+//        commonToast.setMessage(text);
+//        commonToast.setDuration(CommonToast.DURATION_SHORT);
+//        commonToast.setLayoutGravity(Gravity.CENTER);
+//        commonToast.show();
     }
 
     /**
@@ -362,6 +363,7 @@ public abstract class BaseActivity extends AppCompatActivity implements DialogCo
 
     public boolean inspectNet() {
         this.netMobile = NetUtil.getNetWorkState(BaseActivity.this);
+        NetBroadcast.event=this;
         return isNetConnect();
 
         // if (netMobile == 1) {
