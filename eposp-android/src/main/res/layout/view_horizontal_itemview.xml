@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_itemview"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:orientation="horizontal"
+    android:background="@drawable/horizontal_item_bg_select"
+    >
+
+    <TextView
+        android:id="@+id/tv_hiv_iconLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="15dp" />
+
+    <TextView
+        android:id="@+id/tv_hiv_leftText"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:gravity="left|center_vertical"
+        android:layout_marginLeft="15dp"
+        android:textColor="@color/right_text_color"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/tv_hiv_rightText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right|center_vertical"
+        android:textColor="@color/right_text_color"
+        android:singleLine="true"
+        android:layout_marginRight="15dp"
+        android:textSize="15sp" />
+
+    <ImageView
+        android:id="@+id/iv_alert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="18dp"
+        android:background="@drawable/wode_red_img"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/tv_hiv_iconRight"
+        android:layout_width="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_height="match_parent"
+        android:drawableRight="@drawable/right_arrow_nor"
+        android:layout_marginRight="15dp" />
+
+</LinearLayout>

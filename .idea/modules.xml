@@ -5,6 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/EpospAndroid.iml" filepath="$PROJECT_DIR$/EpospAndroid.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/eposp-android/eposp-android.iml" filepath="$PROJECT_DIR$/eposp-android/eposp-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eposp-res/eposp-res.iml" filepath="$PROJECT_DIR$/eposp-res/eposp-res.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modulea/modulea.iml" filepath="$PROJECT_DIR$/modulea/modulea.iml" />
     </modules>
   </component>
 </project>

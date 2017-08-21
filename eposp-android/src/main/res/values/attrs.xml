@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="TitleBar">
+        <attr name="titleBarBg" format="color"></attr>
+        <attr name="showRight" format="boolean"></attr>
+        <attr name="showLeft" format="boolean"></attr>
+        <attr name="centerTitle" format="reference|string"></attr>
+        <attr name="rightTitle" format="reference|string"></attr>
+        <attr name="leftDrawable" format="reference|integer"></attr>
+        <attr name="rightDrawable" format="reference|integer"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="LeftRightText">
+        <attr name="lrtRightColor" format="color"></attr>
+        <attr name="left_Text" format="reference|string"></attr>
+        <attr name="right_Text" format="reference|string"></attr>
+        <attr name="lrtLeftColor" format="color"></attr>
+        <attr name="background_Color" format="color"></attr>
+        <attr name="to_right" format="boolean"></attr>
+        <attr name="right_text_size" format="float"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="LabelEditText">
+        <attr name="labelTextColor" format="color"></attr>
+        <attr name="hintTextColor" format="color"></attr>
+        <attr name="editTxtColor" format="color"></attr>
+        <attr name="isNumber" format="boolean"></attr>
+        <attr name="toLeftGravity" format="boolean"></attr>
+        <attr name="isEdit" format="boolean"></attr>
+        <attr name="showRightBtn" format="boolean"></attr>
+        <attr name="rightBtnText" format="reference|string"></attr>
+        <attr name="labelText" format="reference|string"></attr>
+        <attr name="hintText" format="reference|string"></attr>
+        <attr name="rightTextPadding" format="integer"></attr>
+        <attr name="maxLength" format="integer"></attr>
+        <attr name="labelPaddingLeft" format="integer"></attr>
+        <attr name="editPaddingLft" format="float"></attr>
+        <attr name="leftMinWid" format="integer"></attr>
+
+    </declare-styleable>
+
+    <declare-styleable name="HorizontalItemView">
+        <attr name="showRightText" format="boolean"></attr>
+        <attr name="showLeftText" format="boolean"></attr>
+        <attr name="showRightDraw" format="boolean"></attr>
+        <attr name="showLeftDraw" format="boolean"></attr>
+        <attr name="leftText" format="reference|string"></attr>
+        <attr name="rightText" format="reference|string"></attr>
+        <attr name="iconLeft" format="reference|integer"></attr>
+        <attr name="iconRight" format="reference|integer"></attr>
+        <attr name="rightTextColor" format="color"></attr>
+    </declare-styleable>
+
+</resources>

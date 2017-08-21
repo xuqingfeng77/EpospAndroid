@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#ffffffff</color>
+    <color name="anhei">#2f2f2f</color>
+    <color name="huangse">#ffc178</color>
+    <color name="black">#FF000000</color>
+    <color name="green">#66CD00</color>
+
+
+    <color name="dialog_title_textColor">#1d1e21</color>
+    <color name="dialog_message_textColor">#999999</color>
+    <color name="dialog_line_bg_Color">@color/style_color</color>
+    <color name="dialog_loading_textColor">@color/anhei</color>
+    <color name="dialog_btn_normal_textColor">@color/style_color</color>
+    <color name="dialog_btn_hold_textColor">@color/style_color</color>
+    <color name="dialog_btn_normal_bg">@color/white</color>
+    <color name="dialog_btn_hold_bg">#f1f1f1</color>
+    <color name="dialog_listview_item_textColor">@color/anhei</color>
+
+    <color name="style_color">#1f3853</color>
+
+    <color name="titlebar_bg_color">#052343</color>
+    <color name="titlebar_normal_textColor">@color/white</color>
+    <color name="titlebar_hold_textColor">#f9f9f9</color>
+    <!--主题按钮或者字体颜色：盛钱包为蓝色-->
+    <color name="style_btn_color_nor">#56b9f0</color>
+    <color name="style_btn_color_pre">#a2d6f5</color>
+
+    <!--店员模式背景-->
+    <color name="clerk_bg">@color/titlebar_bg_color</color>
+    <color name="clerk_btn_bg_color">#5661f0</color>
+    <color name="clerk_btn_text_color">#75a9e0</color>
+
+    <color name="left_text_color">#999999</color>
+    <color name="right_text_color">#585858</color>
+    <color name="lrt_textColor">#323232</color>
+    <color name="lrt_grey">#727272</color>
+
+    <color name="gray_text_color_2">#1d1e2e</color>
+    <color name="eposp_red_2">#ee4040</color>
+
+    <color name="horizontal_item_bg_pre">#999999</color>
+
+
+</resources>

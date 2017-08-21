@@ -65,4 +65,6 @@ public class ABPixelUtil {
         final float scale = context.getResources().getDisplayMetrics().scaledDensity;
         return (int) (value / scale + 0.5f);
     }
+
+
 }

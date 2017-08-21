@@ -1,1 +1,1 @@
-include ':app', ':eposp-android'
+include ':app', ':eposp-android', ':modulea', ':eposp-res'

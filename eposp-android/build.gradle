@@ -1,10 +1,11 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
+apply plugin: 'android-apt'
 version = "0.0.1"
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    buildToolsVersion "26.0.0"
 
     defaultConfig {
         minSdkVersion 16
@@ -16,8 +17,14 @@ android {
 
     }
     buildTypes {
+        debug {
+            minifyEnabled false
+            buildConfigField "boolean", "DEBUG_MODEL", "true"
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
         release {
             minifyEnabled false
+            buildConfigField "boolean", "DEBUG_MODEL", "false"
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -32,7 +39,8 @@ install {
         pom {
             project {
                 packaging 'aar'
-                name 'eposp-android For Android'                                   // #CONFIG# // project title
+                name 'eposp-android For Android'
+                // #CONFIG# // project title
                 url siteUrl
                 // Set your license
                 licenses {
@@ -43,9 +51,12 @@ install {
                 }
                 developers {
                     developer {
-                        id 'goodfeng'                                           // #CONFIG# // your user id (you can write your nickname)
-                        name 'xuqingfeng'                                       // #CONFIG# // your user name
-                        email 'xuqingfeng77@foxmail.com'                               // #CONFIG# // your email
+                        id 'goodfeng'
+                        // #CONFIG# // your user id (you can write your nickname)
+                        name 'xuqingfeng'
+                        // #CONFIG# // your user name
+                        email 'xuqingfeng77@foxmail.com'
+                        // #CONFIG# // your email
                     }
                 }
                 scm {
@@ -65,7 +76,7 @@ task sourcesJar(type: Jar) {
 
 task javadoc(type: Javadoc) {
     //增加编码，这行很重要，如果是windows系统，同时如果在代码中有中文的话，不加这行，上传会报错
-    options.encoding="utf-8"
+    options.encoding = "utf-8"
     source = android.sourceSets.main.java.srcDirs
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
 }
@@ -90,13 +101,14 @@ bintray {
         //发布到Bintray的哪个仓库
         repo = "goodfeng"
         //发布到Bintray上的名字
-        name = "eposp-android"                                                 // #CONFIG# project name in jcenter
+        name = "eposp-android"
+        // #CONFIG# project name in jcenter
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         licenses = ["Apache-2.0"]
-        labels=['android']
+        labels = ['android']
         publish = true
-        publicDownloadNumbers=true
+        publicDownloadNumbers = true
 
     }
 }
@@ -106,6 +118,22 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.0.1'
+    //OkHttpClientManager用
+    //项目解析统一用
+    //图片下载和显示的库
+    //bufferknife
+    //LeakCanary
+    // 任务：及时检测内存泄漏以防止OutOfMemoryError崩溃，并降低app内存溢出的风险。
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.squareup.okhttp:okhttp:2.4.0'
+    compile 'com.google.code.gson:gson:2.7'
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    compile 'com.jakewharton:butterknife-compiler:8.4.0'
+    compile 'com.jakewharton:butterknife-annotations:8.4.0'
+    compile 'com.jakewharton:butterknife:8.4.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4'
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4'
 }

@@ -1,6 +1,8 @@
 # EpospAndroid常用工具类
 > **Note:**
 
+>modulea库可以自由切换library和application，在根目录下gradle.properties中设置
+
 >1.rsa，md5，base64加密
 
 >2.日志类

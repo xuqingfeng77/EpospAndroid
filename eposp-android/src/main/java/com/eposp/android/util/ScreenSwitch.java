@@ -14,7 +14,7 @@ import com.eposp.android.R;
  */
 public class ScreenSwitch {
 
-    public static void switchActivity(Context context, Class<?> descClass, Bundle bundle) {
+    public static void switchActivity(Context context, Class<?> descClass, Bundle bundle,int requestCode) {
         Class<?> mClass = context.getClass();
         if (mClass == descClass) {
             return;
@@ -25,7 +25,7 @@ public class ScreenSwitch {
             if (bundle != null) {
                 intent.putExtras(bundle);
             }
-            ((Activity) context).startActivityForResult(intent, 0);
+            ((Activity) context).startActivityForResult(intent, requestCode);
             ((Activity) context).overridePendingTransition(R.anim.eposp_push_left_in, R.anim.eposp_push_left_out);
         } catch (Exception e) {
         }

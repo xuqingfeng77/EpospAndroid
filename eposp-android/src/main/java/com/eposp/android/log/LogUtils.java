@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 
+import com.eposp.android.BuildConfig;
 import com.eposp.android.util.ABAppUtil;
 import com.eposp.android.util.ABConfig;
 import com.eposp.android.util.ABFileUtil;
@@ -23,7 +24,7 @@ import java.util.Date;
 
 public class LogUtils {
 
-    public static String customTagPrefix = "Dream"; // 自定义Tag的前缀，可以是作者名
+    public static String customTagPrefix = "LogUtils"; // 自定义Tag的前缀，可以是作者名
     /** 时间转换格式 */
     @SuppressLint("SimpleDateFormat")
 	private static SimpleDateFormat sDateFormatYMD = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss SSS");
@@ -48,7 +49,7 @@ public class LogUtils {
 
 
     public static void d(String content) {
-        if (!allowD)
+        if (!BuildConfig.DEBUG_MODEL)
             return;
         StackTraceElement caller = getCallerStackTraceElement();
         String tag = generateTag(caller,null);
@@ -56,13 +57,19 @@ public class LogUtils {
     }
     
     public static void d(String mtag, String content) {
-    	if (!allowD)
+    	if (!BuildConfig.DEBUG_MODEL)
     		return;
     	StackTraceElement caller = getCallerStackTraceElement();
     	String tag = generateTag(caller,mtag);
     	Log.d(tag, content);
     }
-
+	public static void e( String content) {
+		if (!BuildConfig.DEBUG_MODEL)
+			return;
+		StackTraceElement caller = getCallerStackTraceElement();
+		String tag = generateTag(caller,null);
+		Log.e(tag, content);
+	}
   
     private static StackTraceElement getCallerStackTraceElement() {
         return Thread.currentThread().getStackTrace()[4];

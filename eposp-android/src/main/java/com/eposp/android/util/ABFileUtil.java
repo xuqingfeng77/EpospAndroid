@@ -87,7 +87,7 @@ public class ABFileUtil {
 
 
     /**
-     * 在SD卡上创建文件
+     * 在SD卡上创建文件，创建的时候必须要有文件夹已经存储，要不然会提示找不到路径的异常
      *
      * @throws IOException
      */
@@ -98,7 +98,7 @@ public class ABFileUtil {
     }
 
     /**
-     * 在SD卡上创建目录
+     * 在SD卡上创建目录，可以实现一次多层级创建
      *
      * @param dirRelativePath
      */
