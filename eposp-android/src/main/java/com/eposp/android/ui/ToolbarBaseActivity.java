@@ -4,14 +4,13 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.annotation.LayoutRes;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Spanned;
 import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,11 +23,9 @@ import com.eposp.android.R;
 import com.eposp.android.broadcast.NetBroadcast;
 import com.eposp.android.dialog.CustomDialog;
 import com.eposp.android.dialog.DialogHelper;
-import com.eposp.android.dialog.DialogUtil;
 import com.eposp.android.net.NetUtil;
 import com.eposp.android.util.ScreenSwitch;
-import com.eposp.android.view.CommonToast;
-import com.squareup.leakcanary.LeakCanary;
+import com.eposp.android.view.ToolBarHelper;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -37,10 +34,10 @@ import butterknife.Unbinder;
 /**
  *@author : xqf
  *@date   :2017/8/18 下午4:48
- *@desc   : 基础模块放到基础库中，方便各个模块使用
+ *@desc   : 基础模块放到基础库中，方便各个模块使用；使用toolbar
  *@update :
  */
-public abstract class BaseActivity extends AppCompatActivity implements DialogControl,BaseViewInfterface,NetBroadcast.NetEvent{
+public abstract class ToolbarBaseActivity extends AppCompatActivity implements DialogControl,BaseViewInfterface,NetBroadcast.NetEvent{
 
     protected Activity mContext;
     protected CustomDialog progressDialog;//自定义对话框，暂时不用
@@ -60,6 +57,11 @@ public abstract class BaseActivity extends AppCompatActivity implements DialogCo
      */
     private int netMobile;
 
+    private ToolBarHelper mToolBarHelper ;
+    public Toolbar toolbar ;
+
+
+
 
     public void setCancelable(boolean cancelable) {
         this.cancelable = cancelable;
@@ -72,16 +74,16 @@ public abstract class BaseActivity extends AppCompatActivity implements DialogCo
         super.onCreate(savedInstanceState);
         mContext = this;
         netChangeEvent=this;
-        setTheme(R.style.App_Theme_Light);
+//        setTheme(R.style.App_Theme_Light);
         onBeforeSetContentLayout();
         if (getLayoutId() != 0) {
             setContentView(getLayoutId());
         }
-        mActionBar = getSupportActionBar();
+//        mActionBar = getSupportActionBar();
         mInflater = getLayoutInflater();
-        if (hasActionBar()) {
-            initActionBar(mActionBar);
-        }
+//        if (hasActionBar()) {
+//            initActionBar(mActionBar);
+//        }
         _isVisible=true;//默认需要显示对话框
         unbinder=ButterKnife.bind(this);
         bundle = getIntent().getExtras();
@@ -89,6 +91,24 @@ public abstract class BaseActivity extends AppCompatActivity implements DialogCo
         inspectNet();
         eventOnClick();
     }
+
+    @Override
+    public void setContentView(@LayoutRes int layoutResID) {
+//        super.setContentView(layoutResID);
+        mToolBarHelper = new ToolBarHelper(this,layoutResID) ;
+        toolbar = mToolBarHelper.getToolBar() ;
+        setContentView(mToolBarHelper.getContentView());
+        /*把 toolbar 设置到Activity 中*/
+        setSupportActionBar(toolbar);
+        /*自定义的一些操作*/
+        onCreateCustomToolBar(toolbar) ;
+    }
+
+
+    public void onCreateCustomToolBar(Toolbar toolbar){
+        toolbar.setContentInsetsRelative(0,0);
+    }
+
     protected void initActionBar(ActionBar actionBar) {
         if (actionBar == null)
             return;
@@ -362,7 +382,7 @@ public abstract class BaseActivity extends AppCompatActivity implements DialogCo
      */
 
     public boolean inspectNet() {
-        this.netMobile = NetUtil.getNetWorkState(BaseActivity.this);
+        this.netMobile = NetUtil.getNetWorkState(ToolbarBaseActivity.this);
         NetBroadcast.event=this;
         return isNetConnect();
 
