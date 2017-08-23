@@ -37,7 +37,7 @@ import butterknife.Unbinder;
 /**
  *@author : xqf
  *@date   :2017/8/18 下午4:48
- *@desc   : 基础模块放到基础库中，方便各个模块使用
+ *@desc   : 基础模块放到基础库中，方便各个模块使用；标题栏用actionbar
  *@update :
  */
 public abstract class BaseActivity extends AppCompatActivity implements DialogControl,BaseViewInfterface,NetBroadcast.NetEvent{

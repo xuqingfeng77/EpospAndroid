@@ -1,18 +1,12 @@
 package com.eposp.xqf;
 
 import android.graphics.Bitmap;
-import android.os.AsyncTask;
-import android.os.SystemClock;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.eposp.android.log.LogUtils;
-import com.eposp.android.ui.BaseActivity;
-import com.eposp.android.ui.ToolbarBaseActivity;
+import com.eposp.android.ui.BaseToolbarActivity;
 import com.eposp.android.util.ABFileUtil;
 import com.eposp.android.util.BimpUtil;
 import com.eposp.android.util.T;
@@ -20,8 +14,6 @@ import com.eposp.android.util.T;
 import java.io.File;
 
 import butterknife.BindView;
-import butterknife.BindViews;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 /**
  *@author  :xqf
@@ -29,7 +21,7 @@ import butterknife.OnClick;
  *@desc    :使用Toolbar
  *@update  :
  */
-public class MainActivity extends ToolbarBaseActivity {
+public class MainActivity extends BaseToolbarActivity {
    private String fileNam="baidu/";
     @BindView(R.id.txt_butter)
     TextView  txtButter;
@@ -49,15 +41,7 @@ public class MainActivity extends ToolbarBaseActivity {
 
     @Override
     public void initView() {
-//      toolbar.setLogo(R.drawable.icon_tab_jl_hold);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "不得了要火了", Toast.LENGTH_SHORT).show();
-            }
-        });
-//        toolbar.setTitle("Title");//设置主标题  此方法设置无效果
-        getSupportActionBar().setTitle("设置");
+          setToolbarTitle("返回");
 //        toolbar.setSubtitle("Subtitle");//设置子标题
 
     }

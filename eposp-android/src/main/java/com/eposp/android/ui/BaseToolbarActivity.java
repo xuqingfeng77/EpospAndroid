@@ -6,7 +6,6 @@ import android.app.ProgressDialog;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Spanned;
@@ -34,10 +33,10 @@ import butterknife.Unbinder;
 /**
  *@author : xqf
  *@date   :2017/8/18 下午4:48
- *@desc   : 基础模块放到基础库中，方便各个模块使用；使用toolbar
+ *@desc   : 基础模块放到基础库中，方便各个模块使用；标题栏用使用toolbar
  *@update :
  */
-public abstract class ToolbarBaseActivity extends AppCompatActivity implements DialogControl,BaseViewInfterface,NetBroadcast.NetEvent{
+public abstract class BaseToolbarActivity extends AppCompatActivity implements DialogControl,BaseViewInfterface,NetBroadcast.NetEvent{
 
     protected Activity mContext;
     protected CustomDialog progressDialog;//自定义对话框，暂时不用
@@ -48,7 +47,6 @@ public abstract class ToolbarBaseActivity extends AppCompatActivity implements D
     private ProgressDialog _waitDialog;
 
     protected LayoutInflater mInflater;
-    protected ActionBar mActionBar;
 
     private boolean _isVisible;//控制是否需要显示对话框
     public static NetBroadcast.NetEvent netChangeEvent;
@@ -61,29 +59,16 @@ public abstract class ToolbarBaseActivity extends AppCompatActivity implements D
     public Toolbar toolbar ;
 
 
-
-
-    public void setCancelable(boolean cancelable) {
-        this.cancelable = cancelable;
-    }
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
         netChangeEvent=this;
-//        setTheme(R.style.App_Theme_Light);
         onBeforeSetContentLayout();
         if (getLayoutId() != 0) {
             setContentView(getLayoutId());
         }
-//        mActionBar = getSupportActionBar();
         mInflater = getLayoutInflater();
-//        if (hasActionBar()) {
-//            initActionBar(mActionBar);
-//        }
         _isVisible=true;//默认需要显示对话框
         unbinder=ButterKnife.bind(this);
         bundle = getIntent().getExtras();
@@ -94,7 +79,6 @@ public abstract class ToolbarBaseActivity extends AppCompatActivity implements D
 
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
-//        super.setContentView(layoutResID);
         mToolBarHelper = new ToolBarHelper(this,layoutResID) ;
         toolbar = mToolBarHelper.getToolBar() ;
         setContentView(mToolBarHelper.getContentView());
@@ -107,36 +91,28 @@ public abstract class ToolbarBaseActivity extends AppCompatActivity implements D
 
     public void onCreateCustomToolBar(Toolbar toolbar){
         toolbar.setContentInsetsRelative(0,0);
-    }
-
-    protected void initActionBar(ActionBar actionBar) {
-        if (actionBar == null)
-            return;
-        if (hasBackButton()) {
-            mActionBar.setDisplayHomeAsUpEnabled(true);
-            mActionBar.setHomeButtonEnabled(true);
-        } else {
-            actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_TITLE);
-            actionBar.setDisplayUseLogoEnabled(false);
-            int titleRes = getActionBarTitle();
-            if (titleRes != 0) {
-                actionBar.setTitle(titleRes);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               finish();
             }
-        }
+        });
     }
 
-    public void setActionBarTitle(int resId) {
+
+
+    public void setToolbarTitle(int resId) {
         if (resId != 0) {
-            setActionBarTitle(getString(resId));
+            setToolbarTitle(getString(resId));
         }
     }
 
-    public void setActionBarTitle(String title) {
+    public void setToolbarTitle(String title) {
         if (TextUtils.isEmpty(title)) {
             title = getString(R.string.app_name);
         }
-        if (hasActionBar() && mActionBar != null) {
-            mActionBar.setTitle(title);
+        if (hasActionBar()) {
+            getSupportActionBar().setTitle(title);
         }
     }
 
@@ -382,7 +358,7 @@ public abstract class ToolbarBaseActivity extends AppCompatActivity implements D
      */
 
     public boolean inspectNet() {
-        this.netMobile = NetUtil.getNetWorkState(ToolbarBaseActivity.this);
+        this.netMobile = NetUtil.getNetWorkState(BaseToolbarActivity.this);
         NetBroadcast.event=this;
         return isNetConnect();
 

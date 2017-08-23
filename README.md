@@ -27,6 +27,12 @@ ScreenSwitch     | Activity界面跳转控制类
 StringUtils     | 字符串工具类，提供一些字符串相关的便捷方法
 T    | toast简单封装
 
+#library
+>**note**
+
+>eposp-android:基础主库
+
+>eposp-res:放各个模块公用的资源
 
 
 
