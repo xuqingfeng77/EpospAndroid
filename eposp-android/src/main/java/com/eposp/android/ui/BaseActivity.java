@@ -37,7 +37,7 @@ import butterknife.Unbinder;
 /**
  *@author : xqf
  *@date   :2017/8/18 下午4:48
- *@desc   : 基础模块放到基础库中，方便各个模块使用；标题栏用actionbar
+ *@desc   : 基础模块放到基础库中，方便各个模块使用；没有Toolbar，如果需要自定义标题栏就继承该类
  *@update :
  */
 public abstract class BaseActivity extends AppCompatActivity implements DialogControl,BaseViewInfterface,NetBroadcast.NetEvent{
@@ -51,10 +51,12 @@ public abstract class BaseActivity extends AppCompatActivity implements DialogCo
     private ProgressDialog _waitDialog;
 
     protected LayoutInflater mInflater;
-    protected ActionBar mActionBar;
+//    protected ActionBar mActionBar;
 
     private boolean _isVisible;//控制是否需要显示对话框
     public static NetBroadcast.NetEvent netChangeEvent;
+
+    public boolean isSetTheme=true;
     /**
      * 网络类型
      */
@@ -72,16 +74,16 @@ public abstract class BaseActivity extends AppCompatActivity implements DialogCo
         super.onCreate(savedInstanceState);
         mContext = this;
         netChangeEvent=this;
-        setTheme(R.style.App_Theme_Light);
+//        setTheme(R.style.App_Theme_Light);//actionBar主题，基类不配置
         onBeforeSetContentLayout();
         if (getLayoutId() != 0) {
             setContentView(getLayoutId());
         }
-        mActionBar = getSupportActionBar();
+//        mActionBar = getSupportActionBar();
         mInflater = getLayoutInflater();
-        if (hasActionBar()) {
-            initActionBar(mActionBar);
-        }
+//        if (hasActionBar()) {
+//            initActionBar(mActionBar);
+//        }
         _isVisible=true;//默认需要显示对话框
         unbinder=ButterKnife.bind(this);
         bundle = getIntent().getExtras();
@@ -89,36 +91,36 @@ public abstract class BaseActivity extends AppCompatActivity implements DialogCo
         inspectNet();
         eventOnClick();
     }
-    protected void initActionBar(ActionBar actionBar) {
-        if (actionBar == null)
-            return;
-        if (hasBackButton()) {
-            mActionBar.setDisplayHomeAsUpEnabled(true);
-            mActionBar.setHomeButtonEnabled(true);
-        } else {
-            actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_TITLE);
-            actionBar.setDisplayUseLogoEnabled(false);
-            int titleRes = getActionBarTitle();
-            if (titleRes != 0) {
-                actionBar.setTitle(titleRes);
-            }
-        }
-    }
-
-    public void setActionBarTitle(int resId) {
-        if (resId != 0) {
-            setActionBarTitle(getString(resId));
-        }
-    }
-
-    public void setActionBarTitle(String title) {
-        if (TextUtils.isEmpty(title)) {
-            title = getString(R.string.app_name);
-        }
-        if (hasActionBar() && mActionBar != null) {
-            mActionBar.setTitle(title);
-        }
-    }
+//    protected void initActionBar(ActionBar actionBar) {
+//        if (actionBar == null)
+//            return;
+//        if (hasBackButton()) {
+//            mActionBar.setDisplayHomeAsUpEnabled(true);
+//            mActionBar.setHomeButtonEnabled(true);
+//        } else {
+//            actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_TITLE);
+//            actionBar.setDisplayUseLogoEnabled(false);
+//            int titleRes = getActionBarTitle();
+//            if (titleRes != 0) {
+//                actionBar.setTitle(titleRes);
+//            }
+//        }
+//    }
+//
+//    public void setActionBarTitle(int resId) {
+//        if (resId != 0) {
+//            setActionBarTitle(getString(resId));
+//        }
+//    }
+//
+//    public void setActionBarTitle(String title) {
+//        if (TextUtils.isEmpty(title)) {
+//            title = getString(R.string.app_name);
+//        }
+//        if (hasActionBar() && mActionBar != null) {
+//            mActionBar.setTitle(title);
+//        }
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
