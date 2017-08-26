@@ -53,7 +53,6 @@ public abstract class BaseFragment extends Fragment implements DialogControl,Bas
      * @param taskId 异步请求任务id
      */
     protected void sendHttpRequest(int taskId) {
-
     }
 
     public void onCreate(Bundle savedInstanceState) {

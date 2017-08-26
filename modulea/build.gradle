@@ -1,8 +1,8 @@
-println IsBuildMudle.toBoolean()
-if (IsBuildMudle.toBoolean()) {
-    apply plugin: 'com.android.application'
-} else {
+println IsModule.toBoolean()
+if (IsModule.toBoolean()) {
     apply plugin: 'com.android.library'
+} else {
+    apply plugin: 'com.android.application'
 }
 android {
     compileSdkVersion 25
@@ -25,10 +25,10 @@ android {
     }
     sourceSets {
         main {
-            if (IsBuildMudle.toBoolean()) {
-                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
-            } else {
+            if (IsModule.toBoolean()) {
                 manifest.srcFile 'src/main/release/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
             }
         }
     }
