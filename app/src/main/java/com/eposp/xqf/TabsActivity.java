@@ -15,7 +15,7 @@ import com.eposp.xqf.fragment.dummy.DummyContent;
 /**
  *@author  :xqf
  *@date    :2017/8/22 10:07
- *@desc    : tab页面测试；使用actionbar
+ *@desc    : tab页面测试；没有Toolbar
  *@update  :
  */
 public class TabsActivity extends BaseActivity  implements FragmentTwo.OnListFragmentInteractionListener {
@@ -27,6 +27,7 @@ public class TabsActivity extends BaseActivity  implements FragmentTwo.OnListFra
     private FragmentTwo mFragmentTwo2;
     private int index;
     private int currentTabIndex;
+//    isSetTheme=false;
     @Override
     public int getLayoutId() {
         return R.layout.activity_tabs;
@@ -53,7 +54,7 @@ public class TabsActivity extends BaseActivity  implements FragmentTwo.OnListFra
                 .add(R.id.fragment_container, mFragmentTwo2)
                 .hide(mFragmentTwo).hide(mFragmentOne2)
                 .hide(mFragmentTwo2).show(mFragmentOne).commit();
-        setActionBarTitle("疯狂摩尔斯");
+//        setActionBarTitle("疯狂摩尔斯");
     }
 
     @Override
