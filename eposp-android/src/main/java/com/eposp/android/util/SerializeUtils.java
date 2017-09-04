@@ -58,15 +58,10 @@ public class SerializeUtils {
     }
 
 
-
-
     /**
      * 反序列化对象
-     *
      * @param str
      * @return
-     * @throws IOException
-     * @throws ClassNotFoundException
      */
     public static Object deSerialization(String str) {
         long startTime = System.currentTimeMillis();
