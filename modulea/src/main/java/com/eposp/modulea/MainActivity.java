@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.eposp.android.log.LogUtils;
+import com.eposp.android.ui.BaseApplication;
 import com.eposp.android.util.T;
 
 public class MainActivity extends AppCompatActivity {
@@ -12,9 +14,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        BaseApplication.isLog=true;
 
     }
     public void btnClick(View v){
+        LogUtils.d("dasdfasdf");
         T.showToast(MainActivity.this,"helloworld");
     }
 }

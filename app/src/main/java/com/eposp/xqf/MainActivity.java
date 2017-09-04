@@ -65,7 +65,7 @@ public class MainActivity extends BaseToolbarActivity {
      void OnTxtClick2(View v){
         LogUtils.d("调试模式："+BuildConfig.DEBUG);
 //        testFileBitmap();
-        changeImage();
+//        changeImage();
     }
     @OnClick(R.id.btn_dialog)
     void onBtnDialog(){
