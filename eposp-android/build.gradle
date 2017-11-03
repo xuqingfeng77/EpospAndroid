@@ -6,7 +6,7 @@ version = "0.1.0"
 android {
     compileSdkVersion 25
     buildToolsVersion "26.0.0"
-
+    publishNonDefault true
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 25
